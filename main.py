@@ -15,7 +15,7 @@ from discord.ext.menus.views import ViewMenuPages
 
 # bot system
 
-class Shoni(commands.Bot):
+class Viser(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.session = aiohttp.ClientSession()
@@ -43,7 +43,7 @@ def pre(bot, msg:discord.Message):
         return "v;",""
     return "v;"
 
-bot = Shoni(
+bot = Viser(
     command_prefix=pre,
     intents=discord.Intents.all(),
     case_insensitive=True,
