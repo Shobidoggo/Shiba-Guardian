@@ -1,4 +1,5 @@
 from collections import namedtuple
+from tkinter import N
 from typing import Union
 import discord
 from discord.ext import commands
@@ -23,7 +24,7 @@ class fun(commands.Cog):
     
     @commands.command(description="Does a poll for you",)
     @commands.cooldown(1, 3, commands.BucketType.user)
-    async def poll(self, ctx: commands.Context, *, poll):
+    async def poll(self, ctx: commands.Context, *, poll: str):
         if "\n" not in poll:
             e=discord.Embed(
                 title=f"**{poll}**",
@@ -41,8 +42,10 @@ class fun(commands.Cog):
                 return
         elif "\n" in poll:
             poll_data = []
-            for line in f"{poll}".split("\n"):
-                poll_data.append(line)
+            n=0
+            for line in poll.split("\n"):
+                poll_data.append(f"{n}. "+line if n != 0 else line)
+                n+=1
             if len(poll_data) > 6:
                 e=discord.Embed(
                     description=f"",
